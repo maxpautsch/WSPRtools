@@ -27,7 +27,6 @@ if settings['cleanDownloads'] == 'true':
 if not os.path.isdir(tmpDir):
     os.mkdir(tmpDir)
 
-#outFile.write('spodID,timestamp,reporter,reporterGrid,snr,frequency,call,grid,power,drift,distance,azimuth,band,version,code\n')
 
 monthList = []
 
@@ -66,8 +65,9 @@ for month in monthList:
         print('  analyzing')
         lines = 0
 
-        outFilePath = tmpDir + '/' + settings['call'] + month + csvSuffix
+        outFilePath = tmpDir + '/' + settings['call'] + '_' + month + csvSuffix
         outFile = open(outFilePath,'w')
+        outFile.write('spodID,timestamp,reporter,reporterGrid,snr,frequency,call,grid,power,drift,distance,azimuth,band,version,code\n')
 
         with open(csvFile, 'rU' ) as f:
             lines = 0
