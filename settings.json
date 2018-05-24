@@ -1,0 +1,7 @@
+{
+    "filter": "true",
+    "call": "DJ",
+    "cleanDownloads" : "false",
+    "startYear" : "2018",
+    "startMonth" :"2"
+}
