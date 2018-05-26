@@ -4,9 +4,12 @@ import urllib.request
 import zipfile
 import csv
 import json
-from datetime import datetime
+from timeHelper import getMonthList
 
-with open('settings.json') as f:
+settings = 'settings.json'
+if os.path.isfile('../' + settings):
+    settings = '../' + settings
+with open(settings) as f:
     settings = json.load(f)
 
 wsprDownloadUrlPrefix = 'http://wsprnet.org/archive/wsprspots-'
@@ -27,17 +30,7 @@ if settings['cleanDownloads'] == 'true':
 if not os.path.isdir(tmpDir):
     os.mkdir(tmpDir)
 
-
-monthList = []
-
-thisYear = datetime.now().strftime('%Y')
-if thisYear != settings['startYear']:
-    raise Exception('not yet implemented: change of year')
-
-thisMonth = int(datetime.now().strftime('%m'))
-for month in range(int(settings['startMonth']), int(thisMonth)+1):
-    monthList.append(settings['startYear'] + '-' + str(month).zfill(2))
-
+monthList = getMonthList(settings)
 
 for month in monthList:
     print('processing ' + month)
@@ -51,7 +44,6 @@ for month in monthList:
         urllib.request.urlretrieve(url, downloadAs)
     else:
         print('  download skipped. already on disk')
-
     
     if not os.path.isfile(csvFile):
         print('  extracting')
@@ -60,14 +52,16 @@ for month in monthList:
     else:
         print('  extract skipped. already on disk')
 
+    if settings['cleanup'] == 'true':
+        os.remove(downloadAs)
 
-    if settings['filter'] == 'true':
+    if settings['filter'] != '':
         print('  analyzing')
         lines = 0
 
-        outFilePath = tmpDir + '/' + settings['call'] + '_' + month + csvSuffix
+        outFilePath = tmpDir + '/' + settings['filter'] + '_' + month + csvSuffix
         outFile = open(outFilePath,'w')
-        outFile.write('spodID,timestamp,reporter,reporterGrid,snr,frequency,call,grid,power,drift,distance,azimuth,band,version,code\n')
+        outFile.write('spodID,timestamp,,rereporterporterGrid,snr,frequency,call,grid,power,drift,distance,azimuth,band,version,code\n')
 
         with open(csvFile, 'rU' ) as f:
             lines = 0
@@ -80,6 +74,9 @@ for month in monthList:
                     cnt = cnt + 1
             print('  analyzed links: '+str(lines))
             print('  number of links involving ' + settings['call'] +': '+str(cnt))
+
+        if settings['cleanup'] == 'true':
+            os.remove(csvFile)
 
 outFile.close()
 

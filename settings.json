@@ -1,7 +1,24 @@
 {
-    "filter": "true",
-    "call": "DJ",
+    "filter": "YOURCALL",
+
+    "call": "YOURCALL",
+    "compareCall" : "YOURCALL/P",
+
+    "cleanup" : "true",
     "cleanDownloads" : "false",
+
+
     "startYear" : "2018",
-    "startMonth" :"2"
+    "startMonth" :"1",
+    "startDay"   : "1",
+    "startTime"  : "01:23:34",
+ 
+    "stopYear" : "2018",
+    "stopMonth" :"5",
+    "stopDay"   : "1",
+    "stopTime"  : "02:45:34",
+    
+    "stopNow"   : "true",
+
+    "plotSubGrid" : "true"
 }
