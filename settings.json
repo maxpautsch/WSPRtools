@@ -1,24 +1,49 @@
 {
-    "filter": "YOURCALL",
+    // add the call signs to analyze and filter here:
+    // eg one call: "calls" : ["my3cal"],
+    // eg three calls: "calls" : ["my1call","my2call","my3call"]
+    "calls": ["ab7dc"],
 
-    "call": "YOURCALL",
-    "compareCall" : "YOURCALL/P",
-
+    // delete files after filtering. recommended as the files are huge!
     "cleanup" : "true",
-    "cleanDownloads" : "false",
 
-
-    "startYear" : "2018",
-    "startMonth" :"1",
-    "startDay"   : "1",
+    // this is the date where the script starts downloading and filtering
+    "startYear"  : "2018",
+    "startMonth" : "3",
+    "startDay"   : "30",
     "startTime"  : "01:23:34",
  
-    "stopYear" : "2018",
-    "stopMonth" :"5",
-    "stopDay"   : "1",
-    "stopTime"  : "02:45:34",
-    
-    "stopNow"   : "true",
+    // if this variable is set to "true", the stop date and time are ignored
+    // the analyzis will use everything from the start date and time
+    "stopNow"    : "true",
 
-    "plotSubGrid" : "true"
+    "stopYear"   : "2018",
+    "stopMonth"  : "5",
+    "stopDay"    : "1",
+    "stopTime"   : "02:45:34",
+    
+    // when plotting the reached grids, only the first 18x18 girds are used when set to false
+    // when set to true, the subgrids are used also. (180x180 grid fields over the whole world)
+    "plotSubGrid"     : "true",
+    // folder to which the grid figures are exported
+    "gridExportDir"   : "gridExport",
+
+    // this is the map used for plotting the grid fields. will be downloaded if not existent
+    "locatorMap"  : "Maidenhead_Locator_Map.png",
+    "locatorMapURL" : "https:\/\/upload.wikimedia.org\/wikipedia\/commons\/9\/94\/Maidenhead_Locator_Map.png",
+
+    // temporary directory to store downloads and csv files
+    "tempDir" : "tmp",
+
+    // DO NOT CHANGE THE FOLLOWING:
+    
+    // download url format of wsprnet.org. slash needs escaping
+    // eg Prefix + 2018-05 + Suffix
+    "wsprDownloadUrlPrefix" : "http:\/\/wsprnet.org\/archive\/wsprspots-",
+    "wsprDownloadUrlSuffix" : ".csv.zip",
+
+    // the zip files contain a csv file with the following format:
+    // eg Prefix + 2018-05 + Suffix
+    "csvSpotsPrefix" : "wsprspots-",
+    "csvSuffix"      : ".csv"
 }

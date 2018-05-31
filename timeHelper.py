@@ -1,7 +1,6 @@
 import datetime
 import time
 
-
 def getMonthList(settings):
     monthList = []
 
@@ -23,12 +22,12 @@ def getMonthList(settings):
 
 def getStartTime(settings):
     hour, minute, second = settings['startTime'].split(':')
-    return datetime.datetime(int(settings['startYear']),int(settings['startMonth']),int(settings['startDay']),int(hour), int(minute), int(second)).strftime('%s')
+    return datetime.datetime(int(settings['startYear']),int(settings['startMonth']),int(settings['startDay']),int(hour), int(minute), int(second)).timestamp()
 
 def getStopTime(settings):
     if settings['stopNow'] == 'true':
-        return datetime.datetime.now().strftime('%s')
+        return datetime.datetime.now().timestamp()
 
     else:
         hour, minute, second = settings['stopTime'].split(':')
-        return datetime.datetime(int(settings['stopYear']),int(settings['stopMonth']),int(settings['stopDay']),int(hour), int(minute), int(second)).strftime('%s')
+        return datetime.datetime(int(settings['stopYear']),int(settings['stopMonth']),int(settings['stopDay']),int(hour), int(minute), int(second)).timestamp()
