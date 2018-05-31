@@ -1,14 +1,20 @@
 # WSPRtools
-tools to analyze data from wsprnet.org
-all settings are don in settings.json
-downloader.py downloads all neccessary data and provides one csv per month with filtered call signs.
+Tools to analyze data from wsprnet.org. Requires python3. 
 
-for plotting install matplotlib: pip3 install matplotlib
+All settings are done within the file settings.json. Afterwards the analysis can be started.
+## Plot grids with links
+A map will be downloaded from [wikimedia (public domain by NASA)](https://commons.wikimedia.org/wiki/File:Maidenhead_Locator_Map.png) 
+All links are listed in the resulting image. Grids with RX, TX or both are colored.
 
+To plot the grid call: `python3 plotGrid.py`
+![grid example](https://github.com/maxpautsch/WSPRtools/raw/master/doc/example_grid.png "grid example")
 
-source of Maidenhead_Locator_Map.png https://commons.wikimedia.org/wiki/File:Maidenhead_Locator_Map.png (public domain by NASA)
-requires python3
+## Generate statistics
+For generation call: `python3 statistics.py`
 
+![statistics example](https://github.com/maxpautsch/WSPRtools/raw/master/doc/example_statistic.png "statistics example")
+
+# Internals
 ## artifacts during analyzis
 ### download zip file
 the zip file is downloaded from http://wsprnet.org/drupal/downloads 
