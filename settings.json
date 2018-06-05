@@ -9,8 +9,8 @@
 
     // this is the date where the script starts downloading and filtering
     "startYear"  : "2018",
-    "startMonth" : "3",
-    "startDay"   : "30",
+    "startMonth" : "5",
+    "startDay"   : "1",
     "startTime"  : "01:23:34",
  
     // if this variable is set to "true", the stop date and time are ignored
@@ -19,7 +19,7 @@
 
     "stopYear"   : "2018",
     "stopMonth"  : "5",
-    "stopDay"    : "1",
+    "stopDay"    : "31",
     "stopTime"   : "02:45:34",
     
     // when plotting the reached grids, only the first 18x18 girds are used when set to false

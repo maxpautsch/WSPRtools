@@ -30,6 +30,9 @@ def analyze(settings, call):
     snrLowest = 999999
     snrHighest = -999999
     snrAverage = 0; 
+
+    receiverCalls = {}
+    senderCalls = {}
     for month in monthList:
         #print('processing: ' + month)
         filterFile = settings['tempDir'] + '/' + callToFile(call) + '_' + month + '.csv'
@@ -66,9 +69,17 @@ def analyze(settings, call):
                 if row[6] == call:
                     locator = row[3]
                     mode = 'TX'
+                    if row[2] in receiverCalls:
+                        receiverCalls[row[2]] += 1
+                    else:
+                        receiverCalls[row[2]] = 1
                 if row[2] == call:
                     locator = row[7]
                     mode = 'RX'
+                    if row[6] in receiverCalls:
+                        senderCalls[row[6]] += 1
+                    else:
+                        senderCalls[row[6]] = 1
                 if mode == '':
                     raise Exception('problem with filtered csv file. call not consistent! ' + fileName)
 
@@ -96,6 +107,7 @@ def analyze(settings, call):
     print('  lowest   : ' + str(snrLowest))
     print('  average  : ' + str(snrAverage/links))
 
+
     locatorGridsTX = 0
     locatorGridsRX = 0
     locatorGridsTXRX = 0
@@ -118,8 +130,16 @@ def analyze(settings, call):
     print('  reached RX        : ' + str(locatorGridsRX))
     print('  reached TX and RX : ' + str(locatorGridsTXRX))
 
-
-
+    print('stations')
+    print('  number of stations which received ' + call + ': ' + str(len(receiverCalls)))
+    print('  call and number of connections: ')
+    print(receiverCalls)
+    print()
+    print('  number of stations which were received: ' + str(len(senderCalls)))
+    print('  call and number of connections: ')
+    print(senderCalls)
+    print()
+    
 # for module testing and downloading without function afterwards:
 if __name__ == "__main__":
     settings = loadSettings()
