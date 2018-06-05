@@ -10,7 +10,7 @@ To plot the grid call: `python3 plotGrid.py`
 ![grid example](https://github.com/maxpautsch/WSPRtools/raw/master/doc/example_grid.png "grid example")
 
 ## Plot complete grids
-Plot all grid locator fields with WISPR activity in the configured time
+Plot all grid locator fields with WSPR activity in the configured time
 
 `python3 plotCompleteGrid.py`
 
